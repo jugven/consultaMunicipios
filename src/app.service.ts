@@ -6,15 +6,24 @@ import { firstValueFrom } from 'rxjs';
 export class AppService {   
   constructor(private readonly httpService: HttpService) {}
 
-  async getMunicipiosLetra(nome?: string): Promise <any[]> {
-    const response = await firstValueFrom(this.httpService.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios'));
-    return response.data;
-  }
-
+  
   async getMunicipios(): Promise <any[]>{
     const response = await firstValueFrom(this.httpService.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios'));
-    return response.data;
+    const data = response.data;
+    return data;
   }
+
+  // async getMunicipiosLetra(nome?: string): Promise <any[]> {
+  //   const response = await firstValueFrom(this.httpService.get('https://servicodados.ibge.gov.br/api/v1/localidades/municipios?orderBy=nome'));
+  //   const data = response.data;
+  //   return data;
+    
+
+  //   // if (nome) {
+  //   //   const filteredData = data.filter()
+  //   // }
+  // }
+
   getHello(): string {
     return 'Hello World!';
   }
