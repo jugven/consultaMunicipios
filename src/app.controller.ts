@@ -1,6 +1,8 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { AppService } from './app.service';
-import { firstValueFrom } from 'rxjs';
+import {promises} from 'fs';
+
+const path = 'municipios.txt'
 
 @Controller()
 export class AppController {
@@ -11,20 +13,13 @@ export class AppController {
     return this.appService.getHello();
   }
 
-  @Get('municipios')//rota 
-  async getMunicipios(): Promise<any[]> {
+  @Get('municipios/:nome?')//rota 
+  async getMunicipios(@Param('nome') nomeInput?: string): Promise<any[]> {
     const municipios = await this.appService.getMunicipios();
     const nomes = municipios.map(m => m.nome);
-    console.log(nomes.slice(0, 10));
-    return nomes;
+    const filteredByNome = nomes.filter(n => n.toLowerCase().startsWith(nomeInput.toLocaleLowerCase()))
+    const topTen = filteredByNome.slice(0, 10);
+    await promises.appendFile(path, topTen.join('\n') + '\n');
+    return topTen;
   }
-
-  // @Get('municipios/:nome?')//rota (n funciona ainda)
-  // async getMunicipiosLetra(@Param('nome') nome?: string): Promise<any[]> {
-  //   const municipios = await this.appService.getMunicipiosLetra(nome);
-  //   console.log(municipios);
-  //   return municipios;
-  // }
-
-
 }
