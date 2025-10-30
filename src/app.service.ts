@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 
-@Injectable()
+@Injectable() 
 export class AppService {   
   constructor(private readonly httpService: HttpService) {}
 
@@ -13,10 +13,20 @@ export class AppService {
     return data;
   }
 
+  getFibonacci(n): number{
+    if (n === 0){
+      return 0;
+    }
+    if (n === 1){
+      return 1;
+    }
+    else{ return this.getFibonacci(n-1) + this.getFibonacci(n-2)}
+  }
+  
+
   getHello(): string {
     return 'Hello World!';
   }
-
 }
 
 
