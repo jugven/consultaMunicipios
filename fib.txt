@@ -1,1 +1,15 @@
-5, 8, 8, 2, 
+Resultado: 21 
+ Busca realizada em 30/10/2025, 21:01:37 
+ 
+Resultado: 34 
+ Busca realizada em 30/10/2025, 21:01:46 
+ 
+Resultado: 34 
+ Busca realizada em 30/10/2025, 21:17:57 
+ 
+Resultado: 3524578 
+ Busca realizada em 30/10/2025, 21:18:13 
+ 
+Resultado: 225851433717 
+ Busca realizada em 30/10/2025, 21:18:31 
+ 

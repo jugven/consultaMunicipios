@@ -35,9 +35,12 @@ export class AppController {
     if (isNaN(n)) {
       throw new BadRequestException("input is not a number! ");
     }
-    const r = this.appService.getFibonacci(n)
-    await promises.appendFile(pathFibonacci, `${r}, `);
-    return r;
+    const r = this.appService.getFibonacci(n);
+    const d = this.appService.getDateTime();
 
+    await promises.appendFile(pathFibonacci, `Resultado: ${r} \n Busca realizada em ${d} \n \n`);
+    return r;
   }
+
+
 }

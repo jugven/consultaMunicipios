@@ -20,7 +20,26 @@ export class AppService {
     if (n === 1){
       return 1;
     }
-    else{ return this.getFibonacci(n-1) + this.getFibonacci(n-2)}
+    else if (n < 30) { return this.getFibonacci(n-1) + this.getFibonacci(n-2)}
+    else{
+      let a = 0;
+      let b = 1;
+      for (let i = 0; i <= n; i++){
+        let r = a + b;
+        a = b;
+        b = r;
+      }
+      return b;
+    }
+  }
+
+  getDateTime(): String{
+    const now = new Date();
+
+    const dateTimeSp = now.toLocaleString('pt-br',{
+      timeZone: 'America/Sao_Paulo'
+    })
+    return dateTimeSp;
   }
   
 
