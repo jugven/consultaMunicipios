@@ -41,6 +41,20 @@ export class AppService {
     })
     return dateTimeSp;
   }
+
+  getPalindrome(word): String{
+    const orig = word;
+    const vetor = orig.split("");
+
+    const inv = []
+    for(let i = 0; i < orig.length; i++){
+      inv.push(vetor.pop());
+    }
+    const inverse = inv.join("");
+
+    return word === inverse? `a palavra ${word} é um palindromo` 
+    : `a palavra ${word} não é um palindromo`;
+  }
   
 
   getHello(): string {

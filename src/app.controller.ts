@@ -1,4 +1,4 @@
-import { BadRequestException, Controller, Get, Param } from '@nestjs/common';
+import { BadRequestException, Controller, Get, Post, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 import { promises } from 'fs';
 
@@ -35,11 +35,16 @@ export class AppController {
     if (isNaN(n)) {
       throw new BadRequestException("input is not a number! ");
     }
-    const r = this.appService.getFibonacci(n);
+    const res = this.appService.getFibonacci(n);
     const d = this.appService.getDateTime();
 
-    await promises.appendFile(pathFibonacci, `Resultado: ${r} \n Busca realizada em ${d} \n \n`);
-    return r;
+    await promises.appendFile(pathFibonacci, `Resultado: ${res} \n Busca realizada em ${d} \n \n`);
+    return res;
+  }
+  @Post('palindromo/:word?')
+  async palindromo(@Param('word') wordInput?: string): Promise<String>{
+    const res = this.appService.getPalindrome(wordInput);
+    return res;
   }
 
 
